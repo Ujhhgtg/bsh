@@ -26,7 +26,7 @@ val jjtFile = layout.projectDirectory.file("src/main/jjtree/bsh.jjt")
 val jjtreeDir = layout.buildDirectory.dir("generated/source/jjtree")
 val jjFile = jjtreeDir.get().file("bsh.jj")
 
-val jjtreeGen by tasks.registering(JavaExec::class) {
+val jjtreeGen = tasks.register<JavaExec>("jjtreeGen") {
     group = "codegen"
     description = "JJTree file build"
 
@@ -42,7 +42,7 @@ val jjtreeGen by tasks.registering(JavaExec::class) {
     outputs.dir(jjtreeDir)
 }
 
-val jjtreeSync by tasks.registering(Copy::class) {
+val jjtreeSync = tasks.register<Copy>("jjtreeSync") {
     group = "codegen"
     description = "JJTree file sync"
     dependsOn(jjtreeGen)
@@ -54,7 +54,7 @@ val jjtreeSync by tasks.registering(Copy::class) {
     into(codeGenDir)
 }
 
-val javaccGen by tasks.registering(JavaExec::class) {
+val javaccGen = tasks.register<JavaExec>("javaccGen") {
     group = "codegen"
     description = "JavaCC file build"
     dependsOn(jjtreeSync)
