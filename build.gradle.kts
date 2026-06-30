@@ -8,7 +8,7 @@ configure<LibraryExtension> {
     namespace = "bsh"
 
     defaultConfig {
-        minSdk = 29
+        minSdk = 28
         lint.targetSdk = 37
         compileSdk = 37
     }
